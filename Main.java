@@ -8,8 +8,15 @@
         listaPunktow.add(new Punkt(randPunktX,randPunktY));
     }
     return listaPunktow;
-}//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+}
+
+double ObliczOdleglosc(Punkt punkt1, Punkt punkt2) {
+    double odleglosc = Math.sqrt(Math.pow(punkt1.punktX - punkt2.punktX,2)+Math.pow(punkt1.punktY - punkt2.punktY,2));
+    odleglosc = Math.round(odleglosc * 100) /100.0;
+    return odleglosc;
+}
+
+
 void main() {
     boolean czyParseIntBezBledu = false;
     Sortownia sortownia = Sortownia.SORTOWNIA;
@@ -27,7 +34,7 @@ void main() {
         }
     }
     List<Punkt> listaPunktowPaczek = GenerujPaczki(iloscPaczek);
-    for(Punkt p:  listaPunktowPaczek){
-        System.out.println(p.punktX + " " + p.punktY);
+    for(int i  = 0; i < listaPunktowPaczek.size() - 1;i++) {
+        System.out.println(ObliczOdleglosc(listaPunktowPaczek.get(i), listaPunktowPaczek.get(i+1)));
     }
 }
