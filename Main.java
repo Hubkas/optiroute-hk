@@ -65,7 +65,7 @@ void WyznaczTrase(List<Punkt> listaPunktow, Punkt sortownia){
 
 void main() {
     boolean czyParseIntBezBledu = false;
-    Sortownia sortownia = Sortownia.SORTOWNIA;
+    Punkt sortownia = Punkt.SORTOWNIA;
     System.out.println("podaj ilośc generowanych paczek: ");
     Scanner sc = new Scanner(System.in);
     String iloscPaczekStr = sc.nextLine();
@@ -82,5 +82,7 @@ void main() {
     List<Punkt> listaPunktowPaczek = GenerujPaczki(iloscPaczek);
     for(int i  = 0; i < listaPunktowPaczek.size() - 1;i++) {
         System.out.println(ObliczOdleglosc(listaPunktowPaczek.get(i), listaPunktowPaczek.get(i+1)));
+     WyznaczTrase(listaPunktowPaczek, sortownia);
+     commit changes
     }
 }
