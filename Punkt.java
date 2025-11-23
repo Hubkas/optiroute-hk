@@ -5,4 +5,6 @@ public class Punkt {
         this.punktX = punktX;
         this.punktY = punktY;
     }
+    public static final Punkt SORTOWNIA = new Punkt(0, 0);
 }
+
