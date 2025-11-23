@@ -33,7 +33,6 @@ void WyznaczTrase(List<Punkt> listaPunktow, Punkt sortownia){
         double minWynik = ObliczOdleglosc(pozycjaKuriera,doreczeniaLista.get(0));;
         for(int i = 0; i < doreczeniaLista.size();i++){
             double wynikObliczOdleglosc = ObliczOdleglosc(pozycjaKuriera,doreczeniaLista.get(i));
-            System.out.println(wynikObliczOdleglosc);
             if(wynikObliczOdleglosc<minWynik) {
                 minWynik = wynikObliczOdleglosc;
                 najblizszaPaczka = i;
@@ -50,9 +49,6 @@ void WyznaczTrase(List<Punkt> listaPunktow, Punkt sortownia){
 
     dlugoscTrasy += ObliczOdleglosc(pozycjaKuriera,ostatniaPaczka);
     wyznaczonaTrasa.add(sortownia);
-    for(int i = 0; i < wyznaczonaTrasa.size()-1;i++){
-        System.out.println(wyznaczonaTrasa.get(i).punktX+"   " + wyznaczonaTrasa.get(i).punktY);
-    }
 }
 
 void main() {
@@ -72,8 +68,5 @@ void main() {
         }
     }
     List<Punkt> listaPunktowPaczek = GenerujPaczki(iloscPaczek);
-    for(int i  = 0; i < listaPunktowPaczek.size() - 1;i++) {
-        System.out.println(ObliczOdleglosc(listaPunktowPaczek.get(i), listaPunktowPaczek.get(i+1)));
-     WyznaczTrase(listaPunktowPaczek, sortownia);
-    }
+    WyznaczTrase(listaPunktowPaczek, sortownia);
 }
