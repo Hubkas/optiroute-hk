@@ -30,25 +30,17 @@ void WyznaczTrase(List<Punkt> listaPunktow, Punkt sortownia){
 
     while(!doreczeniaLista.isEmpty()){
         int najblizszaPaczka = 0;
-        System.out.println(pozycjaKuriera.punktX + "  " + pozycjaKuriera.punktY);
         double minWynik = ObliczOdleglosc(pozycjaKuriera,doreczeniaLista.get(0));;
         for(int i = 0; i < doreczeniaLista.size();i++){
-            System.out.println("pierwsza paczka: " + pozycjaKuriera.punktX + " " + pozycjaKuriera.punktY);
-            System.out.println("druga paczka: " + doreczeniaLista.get(i).punktX + " " + doreczeniaLista.get(i).punktY);
             double wynikObliczOdleglosc = ObliczOdleglosc(pozycjaKuriera,doreczeniaLista.get(i));
             System.out.println(wynikObliczOdleglosc);
             if(wynikObliczOdleglosc<minWynik) {
                 minWynik = wynikObliczOdleglosc;
-                System.out.println("pierwsza paczka min: " + pozycjaKuriera.punktX + " " + pozycjaKuriera.punktY);
-                System.out.println("pierwsza paczka min: " + doreczeniaLista.get(i).punktX + " " + doreczeniaLista.get(i).punktY);
                 najblizszaPaczka = i;
             }
         }
 
-        System.out.println("///////////////////////////");
         dlugoscTrasy += minWynik;
-        System.out.println(doreczeniaLista.get(najblizszaPaczka).punktX + "  " + doreczeniaLista.get(najblizszaPaczka).punktY);
-        System.out.println("///////////////////////////");
         wyznaczonaTrasa.add(doreczeniaLista.get(najblizszaPaczka));
         pozycjaXKuriera = doreczeniaLista.get(najblizszaPaczka).punktX;
         pozycjaYKuriera = doreczeniaLista.get(najblizszaPaczka).punktY;;
@@ -83,6 +75,5 @@ void main() {
     for(int i  = 0; i < listaPunktowPaczek.size() - 1;i++) {
         System.out.println(ObliczOdleglosc(listaPunktowPaczek.get(i), listaPunktowPaczek.get(i+1)));
      WyznaczTrase(listaPunktowPaczek, sortownia);
-     commit changes
     }
 }
