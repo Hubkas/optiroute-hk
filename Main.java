@@ -16,6 +16,52 @@ double ObliczOdleglosc(Punkt punkt1, Punkt punkt2) {
     return odleglosc;
 }
 
+void WyznaczTrase(List<Punkt> listaPunktow, Punkt sortownia){
+    List<Punkt> wyznaczonaTrasa = new ArrayList<>();
+    List<Punkt> doreczeniaLista = listaPunktow;
+    double dlugoscTrasy = 0;
+    int pozycjaXKuriera = 0;
+    int pozycjaYKuriera = 0;
+
+    Punkt pozycjaKuriera = new Punkt(pozycjaXKuriera,pozycjaYKuriera);
+
+    wyznaczonaTrasa.add(sortownia);
+    Punkt ostatniaPaczka = new Punkt(doreczeniaLista.get(doreczeniaLista.size()-1).punktX,doreczeniaLista.get(doreczeniaLista.size()-1).punktY);
+
+    while(!doreczeniaLista.isEmpty()){
+        int najblizszaPaczka = 0;
+        System.out.println(pozycjaKuriera.punktX + "  " + pozycjaKuriera.punktY);
+        double minWynik = ObliczOdleglosc(pozycjaKuriera,doreczeniaLista.get(0));;
+        for(int i = 0; i < doreczeniaLista.size();i++){
+            System.out.println("pierwsza paczka: " + pozycjaKuriera.punktX + " " + pozycjaKuriera.punktY);
+            System.out.println("druga paczka: " + doreczeniaLista.get(i).punktX + " " + doreczeniaLista.get(i).punktY);
+            double wynikObliczOdleglosc = ObliczOdleglosc(pozycjaKuriera,doreczeniaLista.get(i));
+            System.out.println(wynikObliczOdleglosc);
+            if(wynikObliczOdleglosc<minWynik) {
+                minWynik = wynikObliczOdleglosc;
+                System.out.println("pierwsza paczka min: " + pozycjaKuriera.punktX + " " + pozycjaKuriera.punktY);
+                System.out.println("pierwsza paczka min: " + doreczeniaLista.get(i).punktX + " " + doreczeniaLista.get(i).punktY);
+                najblizszaPaczka = i;
+            }
+        }
+
+        System.out.println("///////////////////////////");
+        dlugoscTrasy += minWynik;
+        System.out.println(doreczeniaLista.get(najblizszaPaczka).punktX + "  " + doreczeniaLista.get(najblizszaPaczka).punktY);
+        System.out.println("///////////////////////////");
+        wyznaczonaTrasa.add(doreczeniaLista.get(najblizszaPaczka));
+        pozycjaXKuriera = doreczeniaLista.get(najblizszaPaczka).punktX;
+        pozycjaYKuriera = doreczeniaLista.get(najblizszaPaczka).punktY;;
+        pozycjaKuriera = new Punkt(pozycjaXKuriera,pozycjaYKuriera);
+        doreczeniaLista.remove(najblizszaPaczka);
+    }
+
+    dlugoscTrasy += ObliczOdleglosc(pozycjaKuriera,ostatniaPaczka);
+    wyznaczonaTrasa.add(sortownia);
+    for(int i = 0; i < wyznaczonaTrasa.size()-1;i++){
+        System.out.println(wyznaczonaTrasa.get(i).punktX+"   " + wyznaczonaTrasa.get(i).punktY);
+    }
+}
 
 void main() {
     boolean czyParseIntBezBledu = false;
